@@ -1,25 +1,22 @@
 import { useState } from 'react';
 import styles from './style.module.css';
 
-const searchState = {
-  searchValue: '',
-};
-
 const Searchbar = props => {
-  const [state, setState] = useState('');
+  const [inputValue, setInputSearch] = useState('');
 
   const changeHandler = e => {
     const { value } = e.currentTarget;
-    setState({ searchInput: value });
+    setInputSearch(value);
   };
 
   const submitHandler = e => {
     e.preventDefault();
-
-    console.log(searchState);
-    props.onSubmit(searchState);
-
-    // setState({ searchValue: '' });
+    if (inputValue.trim() === '') {
+      alert('Please input search query!');
+      return;
+    }
+    props.onSubmitHandler(inputValue);
+    setInputSearch('');
   };
 
   return (
@@ -36,7 +33,7 @@ const Searchbar = props => {
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
-          value={state.searchValue}
+          value={inputValue}
         />
       </form>
     </header>
