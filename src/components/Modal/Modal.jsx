@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import styles from './style.module.css';
 
+import PropTypes from 'prop-types';
+
 const Modal = props => {
   const onOverlayClick = e => {
     if (e.currentTarget !== e.target) {
@@ -31,6 +33,12 @@ const Modal = props => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  img: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Modal;

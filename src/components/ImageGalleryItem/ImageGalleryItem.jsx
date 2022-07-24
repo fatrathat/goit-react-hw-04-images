@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styles from './style.module.css';
 
+import PropTypes from 'prop-types';
+
 import Modal from 'components/Modal/Modal';
 
 const ImageGalleryItem = props => {
@@ -26,6 +28,12 @@ const ImageGalleryItem = props => {
       )}
     </li>
   );
+};
+
+ImageGalleryItem.propTypes = {
+  largeImageURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  webformatURL: PropTypes.string.isRequired,
 };
 
 export default ImageGalleryItem;

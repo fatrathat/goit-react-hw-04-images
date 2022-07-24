@@ -1,6 +1,8 @@
 import styles from './style.module.css';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 
+import PropTypes from 'prop-types';
+
 const ImageGalley = props => (
   <div>
     <ul className={styles.ImageGallery}>
@@ -15,5 +17,13 @@ const ImageGalley = props => (
     </ul>
   </div>
 );
+
+ImageGalley.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    })
+  ),
+};
 
 export default ImageGalley;

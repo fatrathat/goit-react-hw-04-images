@@ -1,7 +1,10 @@
 import styles from './style.module.css';
+import Notiflix from 'notiflix';
 
 import Searchbar from 'components/Searchbar/Searchbar';
-import ImageGalley from 'components/ImageGallery/Imagegallery';
+import ImageGalley from 'components/ImageGallery/ImageGallery';
+import Button from 'components/Button/Button';
+import Loader from 'components/Loader/Loader';
 
 import { axiosPhotos } from 'AxiosAPI';
 import { useState, useEffect } from 'react';
@@ -9,14 +12,18 @@ import { useState, useEffect } from 'react';
 export const App = () => {
   const [searchInput, setSearchInput] = useState('');
   const [data, setData] = useState([]);
-  const [, setTotal] = useState('');
+  const [total, setTotal] = useState('');
   const [page, setPage] = useState(1);
-  const [, setStatus] = useState('idle');
+  const [status, setStatus] = useState('idle');
 
   const submitHandler = value => {
     setSearchInput(value);
     setData([]);
     setPage(1);
+  };
+
+  const loadMore = () => {
+    setPage(prev => prev + 1);
   };
 
   useEffect(() => {
@@ -44,14 +51,20 @@ export const App = () => {
     }
   }, [searchInput, page]);
 
-  // const loadMore = () => {
-  //   setPage(prev => prev + 1);
-  // };
-
   return (
     <div className={styles.App}>
       <Searchbar onSubmitHandler={submitHandler} />
+      {status === 'idle' && (
+        <h2 style={{ display: 'flex', justifyContent: 'center' }}>
+          Input search query
+        </h2>
+      )}
+      {status === 'pending' && <Loader />}
+      {status === 'rejected' && Notiflix.Notify.failure('Nothing to watch!')}
       <ImageGalley data={data} />
+      {status === 'resolved' && total !== data.length && (
+        <Button onClick={loadMore} />
+      )}
     </div>
   );
 };
