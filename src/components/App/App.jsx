@@ -2,7 +2,7 @@ import styles from './style.module.css';
 import Notiflix from 'notiflix';
 
 import Searchbar from 'components/Searchbar/Searchbar';
-import ImageGalley from 'components/ImageGallery/ImageGallery';
+import ImageGallery from 'components/ImageGallery/Imagegallery';
 import Button from 'components/Button/Button';
 import Loader from 'components/Loader/Loader';
 
@@ -61,7 +61,7 @@ export const App = () => {
       )}
       {status === 'pending' && <Loader />}
       {status === 'rejected' && Notiflix.Notify.failure('Nothing to watch!')}
-      <ImageGalley data={data} />
+      <ImageGallery data={data} />
       {status === 'resolved' && total !== data.length && (
         <Button onClick={loadMore} />
       )}

@@ -3,7 +3,7 @@ import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 
 import PropTypes from 'prop-types';
 
-const ImageGalley = props => (
+const ImageGallery = props => (
   <div>
     <ul className={styles.ImageGallery}>
       {props.data.map(item => (
@@ -18,7 +18,7 @@ const ImageGalley = props => (
   </div>
 );
 
-ImageGalley.propTypes = {
+ImageGallery.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -26,4 +26,4 @@ ImageGalley.propTypes = {
   ),
 };
 
-export default ImageGalley;
+export default ImageGallery;
