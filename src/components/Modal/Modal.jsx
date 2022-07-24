@@ -18,9 +18,6 @@ const Modal = props => {
 
   useEffect(() => {
     window.addEventListener('keydown', onEscapeDown);
-  });
-
-  useEffect(() => {
     return () => {
       window.removeEventListener('keydown', onEscapeDown);
     };
